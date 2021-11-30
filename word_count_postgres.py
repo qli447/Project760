@@ -1,10 +1,10 @@
 import psycopg2
 def connect_db():
     try:
-        conn = psycopg2.connect(database='twitter', user='postgres',
+        conn = psycopg2.connect(database='Milestone2', user='postgres',
                                 password='123', host='127.0.0.1', port=5432)
     except Exception as e:
-        # error_logger.error(e)
+        
         print("fail")
     else:
         return conn
@@ -14,6 +14,7 @@ def close_db_connection(conn):
     conn.close()
 connect_db()
 print("success connect to database")
+
 import pprint
 
 def execute_sql(sql):
@@ -37,7 +38,7 @@ def execute_select(sql):
     # print(res)
     return res
 
-sql="select * from tweet"
+sql="select * from phrases"
 tweet_table = execute_select(sql)
 # print(ret)
 print(tweet_table[0]['timestamp'])
@@ -50,7 +51,7 @@ for row in tweet_table:
     tweet_text = row['text'].split()
     if (word_count.get(minute_timestamp,-1)==-1):
         word_count[minute_timestamp] = {}
-    # print(tweet_text)
+     print(tweet_text)
     for single_word in tweet_text:
 
         if (word_count[minute_timestamp].get(single_word,-1) == -1) :
@@ -66,6 +67,8 @@ def single_word_times_in_minute(word_count_table,minute_timestamp,single_word):
     print("In "+minute_timestamp)
     print(single_word+":"+str(ret))
     return ret
-
+    
 single_word_times_in_minute(word_count_table=word_count, minute_timestamp='2021-11-17 07:38', )
+
+
 
