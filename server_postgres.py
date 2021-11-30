@@ -1,10 +1,10 @@
 import psycopg2
 def connect_db():
     try:
-        conn = psycopg2.connect(database='twitter', user='postgres',
+        conn = psycopg2.connect(database='Milestone2', user='postgres',
                                 password='123', host='127.0.0.1', port=5432)
     except Exception as e:
-        # error_logger.error(e)
+        
         print("fail")
     else:
         return conn
@@ -121,7 +121,7 @@ def connect_to_endpoint(url):
                     text_value = str(text[i])
                     text_value = text_value.replace('\'', '')
                     text_value = "'"+text_value+"'"
-                    sql = ("insert into tweet(timestamp,text) "+"values(%s, %s)" % (timestamp_value,text_value)+";")
+                    sql = ("insert into phrases(timestamp,text) "+"values(%s, %s)" % (timestamp_value,text_value)+";")
                     execute_sql(sql)
 
                 print("done")
