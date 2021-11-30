@@ -1,10 +1,10 @@
 import psycopg2
 def connect_db():
     try:
-        conn = psycopg2.connect(database='twitter', user='postgres',
+        conn = psycopg2.connect(database='Milestone2', user='postgres',
                                 password='123', host='127.0.0.1', port=5432)
     except Exception as e:
-        # error_logger.error(e)
+        
         print("fail")
     else:
         return conn
@@ -37,7 +37,7 @@ def execute_select(sql):
     # print(res)
     return res
 
-sql="select * from tweet"
+sql="select * from phrases"
 tweet_table = execute_select(sql)
 # print(ret)
 print(tweet_table[0]['timestamp'])
